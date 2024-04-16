@@ -1,0 +1,28 @@
+int pinD2 = 2; // Chân D2
+int pinD3 = 3; // Chân D3
+
+void setup() {
+  pinMode(pinD2, OUTPUT);
+  pinMode(pinD3, OUTPUT);
+  Serial.begin(9600); // Bắt đầu giao tiếp Serial với tốc độ 9600 baud
+}
+
+void loop() {
+  if (Serial.available() > 0) {
+    char command = Serial.read();
+    switch (command) {
+      case 'e': // Lệnh bật chân D2
+        digitalWrite(pinD2, HIGH);
+        break;
+      case 'f': // Lệnh tắt chân D2
+        digitalWrite(pinD2, LOW);
+        break;
+      case 'g': // Lệnh bật chân D3
+        digitalWrite(pinD3, HIGH);
+        break;
+      case 'h': // Lệnh tắt chân D3
+        digitalWrite(pinD3, LOW);
+        break;
+    }
+  }
+}
